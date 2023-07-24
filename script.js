@@ -23,7 +23,7 @@ const closeModal = function () {
 // for (let i = 0; i < btnsOpenModal.length; i++)
 //   btnsOpenModal[i].addEventListener('click', openModal);
 
-btnsOpenModal.forEach(btn=>{
+btnsOpenModal.forEach(btn => {
   btn.addEventListener('click', openModal)
 });
 
@@ -41,11 +41,11 @@ document.addEventListener('keydown', function (e) {
 
 //selecting elements
 
-const header=document.querySelector('header');
+const header = document.querySelector('header');
 
-const allSections=document.querySelectorAll('.section');
+const allSections = document.querySelectorAll('.section');
 document.getElementById('section--1');
-const allButtons=document.getElementsByTagName('button');
+const allButtons = document.getElementsByTagName('button');
 document.getElementsByClassName('btn');
 
 //creating elements
@@ -54,7 +54,7 @@ document.getElementsByClassName('btn');
 
 //creates an element dynamically (Cookie Button)
 //select which element need to create
-const message=document.createElement('div');
+const message = document.createElement('div');
 //adding class to the created element
 message.classList.add('cookie-message');
 //adding inner text/html
@@ -78,7 +78,7 @@ header.append(message);
 
 /////////////////////////////////////////////
 ///deleting cookie button
-document.querySelector('.btn--close-cookie').addEventListener('click',function () {
+document.querySelector('.btn--close-cookie').addEventListener('click', function () {
   message.remove();
 });
 
@@ -86,8 +86,41 @@ document.querySelector('.btn--close-cookie').addEventListener('click',function (
 // implementing smooth scrolling
 
 const buttonScrollTO = document.querySelector('.btn--scroll-to');
-const sectionOne=document.querySelector('#section--1');
+const sectionOne = document.querySelector('#section--1');
 
-buttonScrollTO.addEventListener('click',(e)=>{
-  sectionOne.scrollIntoView({ behavior: 'smooth' });
-})
+buttonScrollTO.addEventListener('click', () => {
+  sectionOne.scrollIntoView({ behavior: "smooth" });
+});
+
+
+//SECOND WAY OF HANDLING EVENTS
+
+//mouseenter event === hover 
+//another way of implenting event
+// old school way
+// sectionOne.onmouseenter=function(e){
+//   alert('hello');
+// };
+
+// remove event listener after click so that it cannot happen again
+//we need to define internal function outside to make this possible
+
+// ex
+const h1 = document.querySelector('h1');
+const alertH1 = function (e) {
+  alert('hello alert');
+
+  // removing that event after once
+  h1.removeEventListener('mouseenter', alertH1);
+}
+
+//listening for event
+h1.addEventListener('mouseenter', alertH1);
+
+// removing after a certain time
+
+// setTimeout(() => 
+//   h1.removeEventListener('mouseenter', alertH1), 3000);
+
+//THIRD WAY OF HANDLING EVENTS using HTML attributes
+{/* <h1 onClick="alert("HTML alter")"</h1> */}
