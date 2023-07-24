@@ -106,16 +106,15 @@ buttonScrollTO.addEventListener('click', () => {
 //we need to define internal function outside to make this possible
 
 // ex
-const h1 = document.querySelector('h1');
-const alertH1 = function (e) {
-  alert('hello alert');
+// const h1 = document.querySelector('h1');
+// const alertH1 = function (e) {
+//   alert('hello alert');
 
   // removing that event after once
-  h1.removeEventListener('mouseenter', alertH1);
-}
+  // h1.removeEventListener('mouseenter', alertH1);
 
 //listening for event
-h1.addEventListener('mouseenter', alertH1);
+// h1.addEventListener('mouseenter', alertH1);
 
 // removing after a certain time
 
@@ -123,4 +122,4 @@ h1.addEventListener('mouseenter', alertH1);
 //   h1.removeEventListener('mouseenter', alertH1), 3000);
 
 //THIRD WAY OF HANDLING EVENTS using HTML attributes
-{/* <h1 onClick="alert("HTML alter")"</h1> */}
+// {/* <h1 onClick="alert("HTML alter")"</h1> */}
