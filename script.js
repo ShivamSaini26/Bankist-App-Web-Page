@@ -40,14 +40,7 @@ document.addEventListener('keydown', function (e) {
 //////////////////////////////////////////
 
 //selecting elements
-
 const header = document.querySelector('header');
-
-const allSections = document.querySelectorAll('.section');
-document.getElementById('section--1');
-const allButtons = document.getElementsByTagName('button');
-document.getElementsByClassName('btn');
-
 //creating elements
 
 //insertAdjacentHTML
@@ -96,7 +89,7 @@ buttonScrollTO.addEventListener('click', () => {
 //SECOND WAY OF HANDLING EVENTS
 
 //mouseenter event === hover 
-//another way of implenting event
+//another way of implementing event
 // old school way
 // sectionOne.onmouseenter=function(e){
 //   alert('hello');
@@ -121,5 +114,22 @@ buttonScrollTO.addEventListener('click', () => {
 // setTimeout(() => 
 //   h1.removeEventListener('mouseenter', alertH1), 3000);
 
-//THIRD WAY OF HANDLING EVENTS using HTML attributes
+//THIRD WAY OF HANDLING EVENTS using HTML attribute
 // {/* <h1 onClick="alert("HTML alter")"</h1> */}
+
+
+//////////////////////////////////////////////
+
+// adding scroll effect to navigation links
+document.querySelectorAll('.nav__link').forEach((element)=>{
+  element.addEventListener('click',(e)=>{
+    e.preventDefault();
+    const id=element.getAttribute('href');
+    console.log(id);
+    document.querySelector(id).scrollIntoView({behavior:'smooth'});
+  });
+});
+
+
+
+
