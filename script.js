@@ -1,37 +1,37 @@
-'use strict';
+"use strict";
 
 ///////////////////////////////////////
 // Modal window
 
-const modal = document.querySelector('.modal');
-const overlay = document.querySelector('.overlay');
-const btnCloseModal = document.querySelector('.btn--close-modal');
-const btnsOpenModal = document.querySelectorAll('.btn--show-modal');
+const modal = document.querySelector(".modal");
+const overlay = document.querySelector(".overlay");
+const btnCloseModal = document.querySelector(".btn--close-modal");
+const btnsOpenModal = document.querySelectorAll(".btn--show-modal");
 
 const openModal = function (e) {
   e.preventDefault();
-  modal.classList.remove('hidden');
-  overlay.classList.remove('hidden');
+  modal.classList.remove("hidden");
+  overlay.classList.remove("hidden");
 };
 
 const closeModal = function () {
-  modal.classList.add('hidden');
-  overlay.classList.add('hidden');
+  modal.classList.add("hidden");
+  overlay.classList.add("hidden");
 };
 
 //old looping method
 // for (let i = 0; i < btnsOpenModal.length; i++)
 //   btnsOpenModal[i].addEventListener('click', openModal);
 
-btnsOpenModal.forEach(btn => {
-  btn.addEventListener('click', openModal)
+btnsOpenModal.forEach((btn) => {
+  btn.addEventListener("click", openModal);
 });
 
-btnCloseModal.addEventListener('click', closeModal);
-overlay.addEventListener('click', closeModal);
+btnCloseModal.addEventListener("click", closeModal);
+overlay.addEventListener("click", closeModal);
 
-document.addEventListener('keydown', function (e) {
-  if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+document.addEventListener("keydown", function (e) {
+  if (e.key === "Escape" && !modal.classList.contains("hidden")) {
     closeModal();
   }
 });
@@ -40,19 +40,20 @@ document.addEventListener('keydown', function (e) {
 //////////////////////////////////////////
 
 //selecting elements
-const header = document.querySelector('header');
+const header = document.querySelector("header");
 //creating elements
 
 //insertAdjacentHTML
 
 //creates an element dynamically (Cookie Button)
 //select which element need to create
-const message = document.createElement('div');
+const message = document.createElement("div");
 //adding class to the created element
-message.classList.add('cookie-message');
+message.classList.add("cookie-message");
 //adding inner text/html
 // message.textContent='We use cookies for improvement functionality.';
-message.innerHTML = 'We use cookies for improvement functionality.<button class="btn btn--close-cookie">Got it</button>'
+message.innerHTML =
+  'We use cookies for improvement functionality.<button class="btn btn--close-cookie">Got it</button>';
 //adding the element as a child in header before all elements
 // header.prepend(message);
 
@@ -71,24 +72,25 @@ header.append(message);
 
 /////////////////////////////////////////////
 ///deleting cookie button
-document.querySelector('.btn--close-cookie').addEventListener('click', function () {
-  message.remove();
-});
+document
+  .querySelector(".btn--close-cookie")
+  .addEventListener("click", function () {
+    message.remove();
+  });
 
 /////////////////////////////////////////////
 // implementing smooth scrolling
 
-const buttonScrollTO = document.querySelector('.btn--scroll-to');
-const sectionOne = document.querySelector('#section--1');
+const buttonScrollTO = document.querySelector(".btn--scroll-to");
+const sectionOne = document.querySelector("#section--1");
 
-buttonScrollTO.addEventListener('click', () => {
+buttonScrollTO.addEventListener("click", () => {
   sectionOne.scrollIntoView({ behavior: "smooth" });
 });
 
-
 //SECOND WAY OF HANDLING EVENTS
 
-//mouseenter event === hover 
+//mouseenter event === hover
 //another way of implementing event
 // old school way
 // sectionOne.onmouseenter=function(e){
@@ -103,33 +105,51 @@ buttonScrollTO.addEventListener('click', () => {
 // const alertH1 = function (e) {
 //   alert('hello alert');
 
-  // removing that event after once
-  // h1.removeEventListener('mouseenter', alertH1);
+// removing that event after once
+// h1.removeEventListener('mouseenter', alertH1);
 
 //listening for event
 // h1.addEventListener('mouseenter', alertH1);
 
 // removing after a certain time
 
-// setTimeout(() => 
+// setTimeout(() =>
 //   h1.removeEventListener('mouseenter', alertH1), 3000);
 
 //THIRD WAY OF HANDLING EVENTS using HTML attribute
 // {/* <h1 onClick="alert("HTML alter")"</h1> */}
 
-
 //////////////////////////////////////////////
 
 // adding scroll effect to navigation links
-document.querySelectorAll('.nav__link').forEach((element)=>{
-  element.addEventListener('click',(e)=>{
+document.querySelectorAll(".nav__link").forEach((element) => {
+  element.addEventListener("click", (e) => {
     e.preventDefault();
-    const id=element.getAttribute('href');
+    const id = element.getAttribute("href");
     console.log(id);
-    document.querySelector(id).scrollIntoView({behavior:'smooth'});
+    document.querySelector(id).scrollIntoView({ behavior: "smooth" });
   });
 });
+////////////////tabs///////////////////////////////
+const tab_content = document.querySelectorAll(".operations__content");
+const tabs = document.querySelectorAll(".operations__tab");
+const tab_container = document.querySelector(".operations__tab-container");
 
+tab_container.addEventListener("click", (event) => {
+  const click = event.target.closest(".operations__tab");
+  console.log(click);
 
+  if (!click) return;
 
+  //removing active classes
+  tabs.forEach((t) => t.classList.remove("operations__tab--active"));
+  tab_content.forEach((c) => c.classList.remove("operations__content--active"));
 
+  //re-active tab
+  click.classList.add("operations__tab--active");
+
+  //active content area
+  document
+    .querySelector(`.operations__content--${click.dataset.tab}`)
+    .classList.add("operations__content--active");
+});
