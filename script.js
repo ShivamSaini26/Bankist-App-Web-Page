@@ -153,3 +153,37 @@ tab_container.addEventListener("click", (event) => {
     .querySelector(`.operations__content--${click.dataset.tab}`)
     .classList.add("operations__content--active");
 });
+
+//////////////navigation menu fade animation/////////
+
+const nav = document.querySelector(".nav");
+
+nav.addEventListener("mouseover", (e) => {
+  if (e.target.classList.contains("nav__link")) {
+    const hoverElement = e.target;
+    const siblings = hoverElement
+      .closest(".nav")
+      .querySelectorAll(".nav__link");
+    const logo = hoverElement.closest(".nav").querySelector("img");
+
+    siblings.forEach((el) => {
+      if (el !== hoverElement) el.style.opacity = 0.5;
+    });
+    logo.style.opacity = 0.5;
+  }
+});
+
+nav.addEventListener("mouseout", (e) => {
+  if (e.target.classList.contains("nav__link")) {
+    const hoverElement = e.target;
+    const siblings = hoverElement
+      .closest(".nav")
+      .querySelectorAll(".nav__link");
+    const logo = hoverElement.closest(".nav").querySelector("img");
+
+    siblings.forEach((el) => {
+      if (el !== hoverElement) el.style.opacity = 1;
+    });
+    logo.style.opacity = 1;
+  }
+});
