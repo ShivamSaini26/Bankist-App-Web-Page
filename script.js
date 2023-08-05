@@ -187,3 +187,13 @@ nav.addEventListener("mouseout", (e) => {
     logo.style.opacity = 1;
   }
 });
+////////////sticky navigation menu/////////////////
+const intialCords=sectionOne.getBoundingClientRect();
+
+window.addEventListener('scroll',function(){
+  if(window.scrollY>intialCords.top)
+  nav.classList.add('sticky');
+else
+nav.classList.remove('sticky');
+
+})
