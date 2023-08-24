@@ -187,6 +187,8 @@ nav.addEventListener("mouseout", (e) => {
     logo.style.opacity = 1;
   }
 });
+
+
 ////////////sticky navigation menu/////////////////
 const intialCords=sectionOne.getBoundingClientRect();
 
@@ -196,4 +198,31 @@ window.addEventListener('scroll',function(){
 else
 nav.classList.remove('sticky');
 
+});
+
+//////////////////////////////////FADING OUT ELEMENTS WHILE SCROLLING THE PAGE///////////////////////////////
+
+const allSections=document.querySelectorAll('.section')
+
+const createSection = (entries, observer) => {
+  const [entry] = entries;
+  // console.log(entry);
+
+  if (!entry.isIntersecting) return;
+
+  entry.target.classList.remove('section--hidden');
+};
+
+
+const sectionObserver = new IntersectionObserver(
+  createSection, {
+    root: null,
+    threshold:0.20,
+  }
+);
+
+//accessing all sections
+allSections.forEach((section) => {
+  sectionObserver.observe(section);
+  section.classList.add('section--hidden');
 })
