@@ -225,4 +225,30 @@ const sectionObserver = new IntersectionObserver(
 allSections.forEach((section) => {
   sectionObserver.observe(section);
   section.classList.add('section--hidden');
-})
+});
+
+///////////lazy loading images////////////
+const imageTarget = document.querySelectorAll('img[data-src]');
+
+const loading = (entries, observer) => {
+  const [entry] = entries;
+  // console.log(entry);
+
+  if (!entry.isIntersecting) return;
+
+  ///replacing src with data-src
+  entry.target.src = entry.target.dataset.src;
+
+  entry.target.addEventListener('load', () => {
+    entry.target.classList.remove('lazy-img');
+  });
+
+  observer.unobserve(entry.target);
+};
+
+const imgObserver = new IntersectionObserver(loading, {
+  root: null,
+  threshold: 0,
+});
+
+imageTarget.forEach(img => imgObserver.observe(img));
